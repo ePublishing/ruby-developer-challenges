@@ -1,0 +1,42 @@
+Problem: 
+
+Your team has been tasked with building a new command line tool to process
+subscriptions. This tool must accept a variety of arguments that can be 
+passed to it.
+
+To do this, it has been decided to use the following convention for the 
+argument formatting: "{<arg1>, <arg2>, <arg3>, ..., <argN>}".
+
+The requirements are as follows:
+  - The input string begins and ends with a curly brace
+  - Each arg is followed by a comma AND a space, except the last arg which
+    is followed by an end curly brace
+  - Each individual element may contain commas and/or curly braces. In each
+    case, an escape character ('|') will precede the comma or curly brace
+  - A pipe '|' does not necessarily mean the following character needs to be
+    escaped. If it does not precede a comma or curly brace, it is to be 
+    considered part of the arg
+  - An empty string arg is a valid parameter, it is indicated by no character
+    preceding a delimitting comma and space (e.g. "{, }")
+  - "{}" returns an array with an empty string element [""]
+  
+Parameter validation - raise ArgumentError.new("Args list is invalid") for each 
+of the following conditions:
+  - if the input is not a string
+  - if the input string does not begin with a opening curly brace and end
+    with a closing curly brace
+  - if any curly brace inside the opening and closing curly braces are not
+    escaped
+  - if any comma that serves as a delimiter fails to have a space after it
+
+Here's a couple of usage examples:
+
+@ap = ArgumentParser.new
+@ap.parse("{a, b, c}") => ["a", "b", "c"] (3 items)
+@ap.parse("{a|,b, c}") => ["a,b", "c"] (2 items)
+@ap.parse("{||, |,|, }") => ["|, ,, "] (1 item)
+@ap.parse("{| , |,, }") => ["| ", ",", ""] (3 items)
+@ap.parse("{}") -> [""] (1 item)
+
+Please check the provided unit tests for more examples and make sure to use 
+them for verifying your solution!

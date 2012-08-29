@@ -1,0 +1,27 @@
+Problem: 
+
+You have just been brought on to a team which has been tasked with porting
+a Ruby version of Mathematica.
+
+Because you are new, you have been given a relatively easy task to 
+write a class that displays polynomials, following some simple rules:
+
+  - if a coefficient is 1, it doesn't get printed
+  - if a coefficient is negative, you have to display something like "-5x^2", 
+    not "+-5x^2"
+  - if a coefficient is 0, nothing gets added to the output
+  - for x^1 the ^1 part gets omitted
+  - x^0 == 1, so omit it
+  - if all of the coefficients are 0, the output is 0
+
+Here's a couple of usage examples:
+
+puts Polynomial.new([-5,-2,1,0,6]) # => -5x^4-2x^3+x^2+6
+puts Polynomial.new([1,0,7]) # => x^2+7
+puts Polynomial.new([0,0,0]) # => 0
+
+If somebody tries to create a polynomial with less than 2 elements, 
+your program has to raise ArgumentError.new("Two or more coefficients are required")
+
+Please check the provided unit tests for more examples and make sure to use 
+them for verifying your solution!
