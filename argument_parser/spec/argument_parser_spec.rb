@@ -9,7 +9,7 @@ describe ArgumentParser do
     "{| , |,, }" => ["| ", ",", ""],
     "{}" => [""],
   }.each do |string, expected|
-    xit "returns #{expected} when supplied #{string}" do
+    it "returns #{expected} when supplied #{string}" do
       subject.parse(string).should eq(expected)
     end
   end
