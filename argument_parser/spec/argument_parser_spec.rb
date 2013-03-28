@@ -16,7 +16,7 @@ describe ArgumentParser do
 
   [1, "}", "{", "{{}", "{}}", "{a,b}"].each do |invalid|
     it "raises an exception when supplied '#{invalid}'" do
-      expect { subject.parse(subject) }.to raise_error(ArgumentError, /Args list is invalid/)
+      expect { subject.parse(invalid) }.to raise_error(ArgumentError, /Args list is invalid/)
     end
   end
 end
